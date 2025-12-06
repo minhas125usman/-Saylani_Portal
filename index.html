@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SMIT PORTAL — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="logo">
+          <div class="logo-mark">SMIT</div>
+          <div class="logo-text">SMIT PORTAL</div>
+        </div>
+      </div>
+
+      <nav class="nav" role="navigation">
+        <a href="#" class="nav-link active" data-target="dashboard">🏠 Dashboard</a>
+        <a href="#" class="nav-link" data-target="attendance">📋 Attendance</a>
+        <a href="#" class="nav-link" data-target="fees">💳 Payment</a>
+        <a href="#" class="nav-link" data-target="courses">📚 Courses</a>
+        <a href="#" class="nav-link" data-target="profile">🙍 Profile</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="user">
+          <div class="avatar" id="sidebar-avatar"></div>
+          <div class="user-name" id="sidebar-name">M. USMAN MINHAS</div>
+        </div>
+        <button class="sidebar-toggle" id="close-sidebar">✕</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="open-sidebar">☰</button>
+        <div class="crumbs" id="crumbs">Home › <strong id="crumb-title">Dashboard</strong></div>
+        <div class="actions">
+          <button class="pill" id="notif-btn">Notifications</button>
+        </div>
+      </header>
+
+      <div class="container">
+
+        <section class="page" id="dashboard" data-page>
+          <section class="metrics">
+            <div class="metric card">
+              <div class="metric-body">
+                <div class="metric-value" id="att-display">0/0</div>
+                <div class="metric-label">Attendance</div>
+              </div>
+              <div class="metric-icon">⏱️</div>
+            </div>
+
+            <div class="metric card">
+              <div class="metric-body">
+                <div class="metric-value" id="assign-display">0</div>
+                <div class="metric-label">Assignments</div>
+              </div>
+              <div class="metric-icon">🎓</div>
+            </div>
+
+            <div class="metric card right-widget">
+              <div class="card-title">Class Schedule</div>
+              <div class="calendar-widget">
+                <div class="calendar-week" id="calendar-week"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="layout">
+            <div class="content-left">
+              <article class="card active-course">
+                <div class="card-header">
+                  <h2 id="active-course-title">Modern Web Application Development</h2>
+                  <div class="tag enrolled">ENROLLED</div>
+                </div>
+
+                <div class="meta-row">
+                  <div class="meta">WMA</div>
+                  <div class="meta">Sat 06:00 PM - 09:00 PM</div>
+                  <div class="meta">Sun 06:00 PM - 09:00 PM</div>
+                </div>
+
+                <div class="progress-row">
+                  <div class="progress-bar">
+                    <div class="progress" id="course-progress" style="width:39%"></div>
+                  </div>
+                  <div class="progress-percent" id="course-percent">39%</div>
+                </div>
+
+                <div class="course-info">
+                  <div>Batch: <strong id="batch">16</strong></div>
+                  <div>Roll: <strong id="roll">373098</strong></div>
+                  <div>Campus: <strong id="campus">Head Office</strong></div>
+                  <div>City: <strong id="city">Karachi</strong></div>
+                </div>
+              </article>
+
+              <section class="card fee-card">
+                <h3>Fee</h3>
+                <div class="table-wrap">
+                  <table class="fee-table" id="fee-table">
+                    <thead>
+                      <tr>
+                        <th>Month</th>
+                        <th>Amount</th>
+                        <th>Due date</th>
+                        <th>Voucher ID</th>
+                        <th>Invoice</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="fees-tbody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+
+            <aside class="content-right">
+              <div class="card small">
+                <div class="tabs">
+                  <button class="tab active" data-tab="assign">Assignments</button>
+                  <button class="tab" data-tab="quiz">Quizzes</button>
+                  <button class="tab" data-tab="events">Events</button>
+                </div>
+                <div class="tab-body" id="tab-body">No upcoming items</div>
+              </div>
+
+              <div class="card small upcoming">
+                <h4>Progress</h4>
+                <p id="progress-summary">Course progress details</p>
+              </div>
+            </aside>
+          </section>
+        </section>
+
+        <section class="page" id="attendance" hidden data-page>
+          <section class="card">
+            <h2>Attendance Management</h2>
+            <form id="attendance-form" class="form-row">
+              <input id="att-name" type="text" placeholder="Student name" required />
+              <select id="att-status">
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+              </select>
+              <input id="att-date" type="date" required />
+              <button class="btn" type="submit">Add</button>
+            </form>
+            <div id="attendance-list" class="list"></div>
+          </section>
+        </section>
+
+        <section class="page" id="fees" hidden data-page>
+          <section class="card">
+            <h2>Fees & Payments</h2>
+            <form id="fees-form" class="form-row">
+              <input id="fee-name" type="text" placeholder="Student name" required />
+              <input id="fee-amount" type="number" placeholder="Amount" required />
+              <input id="fee-date" type="date" required />
+              <input id="fee-month" type="text" placeholder="Month e.g. Nov 2025" />
+              <input id="fee-voucher" type="text" placeholder="Voucher ID" />
+              <input id="fee-invoice" type="text" placeholder="Invoice ID" />
+              <select id="fee-status">
+                <option value="PAID">PAID</option>
+                <option value="DUE">DUE</option>
+              </select>
+              <button class="btn" type="submit">Record Payment</button>
+            </form>
+            <div id="fees-list" class="list"></div>
+            <div class="card small mt-12">
+              <h3>Summary</h3>
+              <p>Total collected: <strong id="fees-total">Rs 0</strong></p>
+            </div>
+          </section>
+        </section>
+
+        <section class="page" id="courses" hidden data-page>
+          <section class="card">
+            <h2>Courses</h2>
+            <form id="course-form" class="form-row">
+              <input id="course-title" placeholder="Course title" required />
+              <input id="course-code" placeholder="Course code" required />
+              <button class="btn" type="submit">Add Course</button>
+            </form>
+            <div id="courses-list" class="list"></div>
+          </section>
+        </section>
+
+        <section class="page" id="profile" hidden data-page>
+          <section class="card">
+            <h2>Profile</h2>
+            <form id="profile-form" class="column">
+              <input id="prof-name" placeholder="Full name" required />
+              <input id="prof-email" type="email" placeholder="Email" />
+              <input id="prof-phone" placeholder="Phone" />
+              <input id="prof-cnic" placeholder="CNIC" />
+              <textarea id="prof-bio" placeholder="Short bio"></textarea>
+              <button class="btn" type="submit">Save Profile</button>
+            </form>
+            <div id="profile-preview" class="card small mt-12"></div>
+          </section>
+        </section>
+
+      </div>
+
+      <footer class="footer">
+        
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
